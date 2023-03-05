@@ -1,0 +1,26 @@
+﻿.-hierarchy-diff-file-path-header {
+    background-color: rgb(0x24, 0x29, 0x2f);
+}
+
+.-hierarchy-diff-file-path-header-title {
+    color: rgb(0x92, 0x95, 0x95);
+    font-size: 12px;
+    background-color: rgb(0x24, 0x29, 0x2f);
+    background-image: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.-hierarchy-diff-file-path-header-title:hover {
+    background-color: rgb(0x34, 0x39, 0x3f);
+    color: rgb(0xa2, 0xa5, 0xa5);
+}
+
+.-hierarchy-diff-file-path-header-separator {
+    background-color: black;
+}
+
+.-hierarchy-diff-hierarchy-view-separator {
+}

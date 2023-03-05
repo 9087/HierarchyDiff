@@ -1,0 +1,7 @@
+/.vs
+/HierarchyDiff/bin
+/HierarchyDiff/obj
+/HierarchyDiff.Core/obj
+/HierarchyDiff.Core/bin
+/HierarchyDiff.Serialization.Xml/obj
+/HierarchyDiff.Serialization.Xml/bin

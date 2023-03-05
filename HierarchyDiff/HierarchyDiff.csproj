@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Property.png" />
+    <None Remove="Style.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Property.png" />
+    <EmbeddedResource Include="Resources\Style.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GtkSharp" Version="3.24.24.38" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HierarchyDiff.Core\HierarchyDiff.Core.csproj" />
+    <ProjectReference Include="..\HierarchyDiff.Serialization.Xml\HierarchyDiff.Serialization.Xml.csproj" />
+  </ItemGroup>
+
+</Project>
