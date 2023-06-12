@@ -5,6 +5,10 @@ namespace HierarchyDiff
 {
     internal class Program
     {
+        private static MainWindow? window;
+        
+        public static MainWindow Window => window!;
+
         static int Main(string[] args)
         {
             if (args.Length != 2)
@@ -18,8 +22,9 @@ namespace HierarchyDiff
                 return 1;
             }
             Application.Init();
-            var window = new MainWindow();
+            window = new MainWindow();
             window.ShowAll();
+            window.Initialize();
             window.Load(originPath, targetPath);
             Application.Run();
             return 0;

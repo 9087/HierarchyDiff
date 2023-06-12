@@ -12,6 +12,11 @@ namespace HierarchyDiff
 {
     public class HierarchyView : Bin
     {
+        public Action<HierarchyDiff.Core.Node>? NodeCollapsed;
+        public Action<HierarchyDiff.Core.Node>? NodeExpanded;
+        public Action<HashSet<HierarchyDiff.Core.Node>>? NodeSelectionChanged;
+        public Action<int, int>? ColumnWidthChanged;
+
         #region Hierarchy tree view
 
         protected class TreeView : Gtk.TreeView
@@ -36,10 +41,6 @@ namespace HierarchyDiff
                 treeView.Model = model?.TreeModel;
             }
         }
-
-        public Action<HierarchyDiff.Core.Node>? NodeCollapsed;
-        public Action<HierarchyDiff.Core.Node>? NodeExpanded;
-        public Action<HashSet<HierarchyDiff.Core.Node>>? NodeSelectionChanged;
         protected HashSet<TreePath> selectedPaths = new();
         protected TreePath? firstPath;
 
@@ -262,6 +263,25 @@ namespace HierarchyDiff
         public void ExpandAll()
         {
             treeView.ExpandAll();
+        }
+
+        internal void OnColumnWidthChanged(Gtk.TreeViewColumn column, int width)
+        {
+            int index = Array.IndexOf(this.treeView.Columns, column);
+            ColumnWidthChanged?.Invoke(index, width);
+        }
+
+        public void SetColumnWidth(int index, int width)
+        {
+            var columns = this.treeView.Columns;
+            if (index != columns.Length - 1)
+            {
+                var column = columns[index];
+                if (column.FixedWidth != width)
+                {
+                    column.FixedWidth = width;
+                }
+            }
         }
 
         #endregion

@@ -12,6 +12,9 @@ namespace HierarchyDiff
     {
         protected CellRendererPixbuf iconRenderer;
         protected CellRendererText textRenderer;
+        protected int width;
+
+        public HierarchyView HierarchyView => (this.TreeView.GetAncestor(HierarchyView.GType) as HierarchyView)!;
 
         public HierarchyViewColumn(string title)
         {
@@ -26,6 +29,41 @@ namespace HierarchyDiff
             this.SetCellDataFunc(textRenderer, OnRenderingInternal);
             this.Title = title;
             this.Resizable = true;
+            this.AddNotification("width", OnColumnWidthChanged);
+        }
+
+        private bool requestingColumnWidthChange = false;
+
+        private void OnColumnWidthChanged(object sender, GLib.NotifyArgs args)
+        {
+            TreeViewColumn column = (TreeViewColumn)sender;
+            if (!Program.Window.Initialized)
+            {
+                return;
+            }
+            if (width == this.FixedWidth)
+            {
+                return;
+            }
+            width = this.FixedWidth;
+            if (requestingColumnWidthChange)
+            {
+                return;
+            }
+            requestingColumnWidthChange = true;
+            Timeout.Add(1, () =>
+            {
+                TreeViewColumn column = this;
+                try
+                {
+                    HierarchyView.OnColumnWidthChanged(this, column.FixedWidth);
+                }
+                finally
+                {
+                    requestingColumnWidthChange = false;
+                }
+                return false;
+            });
         }
 
         public class CellInfo
@@ -51,7 +89,7 @@ namespace HierarchyDiff
                 this.Model = model;
                 this.Iter = iter;
 
-                this.HierarchyView = (column.TreeView.GetAncestor(HierarchyView.GType) as HierarchyView)!;
+                this.HierarchyView = this.Column.HierarchyView;
                 this.Selected = HierarchyView.IterIsSelected(iter);
                 this.Node = (model.GetNode(iter, 0) as PartialNode)!;
             }

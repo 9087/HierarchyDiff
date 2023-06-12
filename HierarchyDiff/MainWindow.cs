@@ -11,6 +11,8 @@ namespace HierarchyDiff
     {
         private readonly HierarchyParallelView parallelView = new(2);
 
+        public bool Initialized { get; private set; } = false;
+
         public MainWindow() : base("Hierarchy Diff")
         {
             using (Stream? styleStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("HierarchyDiff.Resources.Style.css"))
@@ -24,6 +26,11 @@ namespace HierarchyDiff
             SetDefaultSize(1024, 768);
             DeleteEvent += OnWindowDeleted;
             Add(parallelView);
+        }
+
+        public void Initialize()
+        {
+            this.Initialized = true;
         }
 
         public bool Load(string originPath, string targetPath)

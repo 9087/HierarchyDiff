@@ -96,6 +96,10 @@ namespace HierarchyDiff
                 .Repeat<object?>(null, (int)count)
                 .Select(_ => new HierarchyView())
                 .ToList();
+            foreach (var hierarchyView in hierarchyViews)
+            {
+                hierarchyView.ColumnWidthChanged += OnHierarchyViewColumnWidthChanged;
+            }
             var box = new VBox();
             this.Add(box);
             
@@ -140,6 +144,14 @@ namespace HierarchyDiff
                 hierarchyView.NodeSelectionChanged += OnNodeSelectionChanged;
             }
             Model = new HierarchyParallelModel(count);
+        }
+
+        private void OnHierarchyViewColumnWidthChanged(int index, int width)
+        {
+            foreach (var hierarchyView in hierarchyViews)
+            {
+                hierarchyView.SetColumnWidth(index, width);
+            }
         }
 
         private void OnNodeExpanded(HierarchyDiff.Core.Node node)
