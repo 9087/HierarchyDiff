@@ -1,14 +1,17 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
 
 namespace HierarchyDiff
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
-    }
+        public static new App Current => (Application.Current as App)!;
 
+        public string[] Arguments { get; private set; } = new string[0];
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Arguments = e.Args;
+            base.OnStartup(e);
+        }
+    }
 }

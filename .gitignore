@@ -2,3 +2,10 @@
 /_ReSharper.Caches
 /HierarchyDiff/bin
 /HierarchyDiff/obj
+/HierarchyDiff.Core/bin
+/HierarchyDiff.Core/obj
+/HierarchyDiff.FileFormat.Csd/bin
+/HierarchyDiff.FileFormat.Csd/obj
+/HierarchyDiff.FileFormat.Xml/bin
+/HierarchyDiff.FileFormat.Xml/obj
+/HierarchyDiff/Properties/launchSettings.json

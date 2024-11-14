@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="HierarchyDiff.View.ComparisonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:v="clr-namespace:HierarchyDiff.View"
+             xmlns:vm="clr-namespace:HierarchyDiff.ViewModel"
+             xmlns:modernwpf="http://schemas.modernwpf.com/2019"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:fluent="urn:fluent-ribbon"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <UserControl.DataContext>
+    <vm:ComparisonViewModel/>
+  </UserControl.DataContext>
+  <UserControl.InputBindings>
+    <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}" />
+  </UserControl.InputBindings>
+  <UserControl.Resources>
+  </UserControl.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <v:ParallelTreeView x:Name="TreeView0" Grid.Column="0" DataContext="{Binding SourceTree}"
+                  HighlightBrush="{StaticResource SourceHighlightBrush}"
+                  PlaceholderBrush="{StaticResource PlaceholderBrush}"
+                  VerticalScrollBarVisibility="Hidden"
+                  HorizontalScrollBarVisibility="Disabled"/>
+    <GridSplitter Grid.Column="1" Width="3" Background="{DynamicResource GridLinesBrush}" ResizeBehavior="PreviousAndNext"/>
+    <v:ParallelTreeView x:Name="TreeView1" Grid.Column="2" DataContext="{Binding TargetTree}"
+                  HighlightBrush="{StaticResource TargetHighlightBrush}"
+                  PlaceholderBrush="{StaticResource PlaceholderBrush}"
+                  HorizontalScrollBarVisibility="Disabled"/>
+  </Grid>
+</UserControl>

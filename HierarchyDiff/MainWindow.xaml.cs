@@ -1,24 +1,28 @@
-﻿using System.Text;
+﻿using Fluent;
+using HierarchyDiff.ViewModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HierarchyDiff
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, Fluent.IRibbonWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+            if (App.Current.Arguments.Length >= 2)
+            {
+                var a = HierarchyDiff.Core.Document.Load(App.Current.Arguments[0]);
+                var b = HierarchyDiff.Core.Document.Load(App.Current.Arguments[1]);
+                if (a != null && b != null)
+                {
+                    var comparison = HierarchyDiff.Core.Comparison.Create(a!, b!);
+                    this.DataContext = new ComparisonViewModel(comparison);
+                    return;
+                }
+            }
+            this.DataContext = new ComparisonViewModel();
         }
+
+        public RibbonTitleBar? TitleBar => null;
     }
 }

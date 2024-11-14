@@ -3,11 +3,128 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HierarchyDiff"
+        xmlns:v="clr-namespace:HierarchyDiff.View"
+        xmlns:fluent="urn:fluent-ribbon"
         mc:Ignorable="d"
         Title="Hierarchy Diff" Height="450" Width="800"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True">
+        xmlns:modernwpf="http://schemas.modernwpf.com/2019"
+        modernwpf:WindowHelper.UseModernWindowStyle="True">
   <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <fluent:Ribbon Grid.Row="0" SelectedTabIndex="0" CanMinimize="false" IsQuickAccessToolBarVisible="False" Visibility="Collapsed">
+      <fluent:Ribbon.Menu>
+        <Menu Background="{StaticResource SystemControlForegroundAccentBrush}">
+          <MenuItem Header="File"
+                    Foreground="{StaticResource SystemControlForegroundAltHighBrush}">
+            <MenuItem Header="Open" InputGestureText="Ctrl+O">
+              <MenuItem.Icon>
+                <modernwpf:FontIcon Glyph="&#xE8E5;"/>
+              </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Save" InputGestureText="Ctrl+S">
+              <MenuItem.Icon>
+                <modernwpf:FontIcon Glyph="&#xE74E;"/>
+              </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Save As" InputGestureText="Ctrl+Shift+S">
+              <MenuItem.Icon>
+                <modernwpf:FontIcon Glyph="&#xE792;"/>
+              </MenuItem.Icon>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="About">
+              <MenuItem.Icon>
+                <modernwpf:FontIcon Glyph="&#xE946;"/>
+              </MenuItem.Icon>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Exit" InputGestureText="Alt+F4">
+              <MenuItem.Icon>
+                <modernwpf:FontIcon Glyph="&#xE7E8;"/>
+              </MenuItem.Icon>
+            </MenuItem>
+          </MenuItem>
+        </Menu>
+      </fluent:Ribbon.Menu>
+      <fluent:RibbonTabItem Header="Edit">
+        <fluent:RibbonGroupBox Header="Edit">
+          <fluent:Button SizeDefinition="Large" Header="Save">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE74E;"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <Separator/>
+          <fluent:Button SizeDefinition="Large" Header="Reload">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE72C;"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <fluent:Button SizeDefinition="Middle,Small" Header="Undo">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE7A7;" FontSize="15"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <fluent:Button SizeDefinition="Middle,Small" Header="Redo">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE7A6;" FontSize="15"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <fluent:ToggleButton SizeDefinition="Middle,Small" Header="Enable Edit">
+            <fluent:ToggleButton.Icon>
+              <modernwpf:FontIcon Glyph="&#xEB7E;" FontSize="15"/>
+            </fluent:ToggleButton.Icon>
+          </fluent:ToggleButton>
+          <Separator/>
+          <fluent:Button SizeDefinition="Large" Header="Copy">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE8C8;"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <fluent:Button SizeDefinition="Large" Header="Paste">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE77F;"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <Separator/>
+          <fluent:Button SizeDefinition="Large" Header="Find">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE721;"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <fluent:Button SizeDefinition="Middle,Small" Margin="0,8,0,8" Header="Find Previous">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE74A;" FontSize="15"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <fluent:Button SizeDefinition="Middle,Small" Margin="0,0,0,8" Header="Find Next">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE74B;" FontSize="15"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <Separator/>
+          <fluent:Button SizeDefinition="Large" Header="Mark As resolved">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE73E;"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+        </fluent:RibbonGroupBox>
+        <fluent:RibbonGroupBox Header="Navigate">
+          <fluent:Button SizeDefinition="Middle,Small" Margin="0,8,0,8" Header="Previous difference">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE74A;" FontSize="15"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+          <fluent:Button SizeDefinition="Middle,Small" Margin="0,0,0,8" Header="Next difference">
+            <fluent:Button.Icon>
+              <modernwpf:FontIcon Glyph="&#xE74B;" FontSize="15"/>
+            </fluent:Button.Icon>
+          </fluent:Button>
+        </fluent:RibbonGroupBox>
+      </fluent:RibbonTabItem>
+    </fluent:Ribbon>
+    <v:ComparisonView Grid.Row="1" DataContext="{Binding}"/>
   </Grid>
 </Window>
