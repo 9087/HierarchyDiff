@@ -114,6 +114,7 @@ namespace HierarchyDiff.FileFormat.Xml
             XmlNode? xmlNode = node as XmlNode;
             return xmlNode?.Name ?? string.Empty;
         }
+
         public override string? GetValue(object? node)
         {
             XmlNode? xmlNode = node as XmlNode;

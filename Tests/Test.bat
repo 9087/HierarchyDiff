@@ -1,0 +1,1 @@
+..\HierarchyDiff\bin\Release\net6.0-windows\HierarchyDiff.exe Menu1.xml Menu2.xml
