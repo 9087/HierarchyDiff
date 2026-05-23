@@ -2,7 +2,7 @@
 
 namespace HierarchyDiff.Core
 {
-    internal class FileFormatRegistry
+    public class FileFormatRegistry
     {
         private static FileFormatRegistry? singleton;
 
@@ -77,6 +77,23 @@ namespace HierarchyDiff.Core
             fileFormat = Activator.CreateInstance(type) as FileFormat;
             fileFormatCache[extensionName] = fileFormat!;
             return fileFormat;
+        }
+
+        public string GetFileFilter()
+        {
+            var parts = new List<string>();
+            var extensions = new List<string>();
+            foreach (var extensionName in fileFormatTypes.Keys.OrderBy(k => k))
+            {
+                extensions.Add($"*.{extensionName}");
+                parts.Add($"{extensionName.ToUpper()} files|*.{extensionName}");
+            }
+            if (extensions.Count > 0)
+            {
+                parts.Insert(0, $"All supported files|{string.Join(";", extensions)}");
+            }
+            parts.Add("All files|*.*");
+            return string.Join("|", parts);
         }
     }
 }

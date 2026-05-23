@@ -14,22 +14,22 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition/>
     </Grid.RowDefinitions>
-    <fluent:Ribbon Grid.Row="0" SelectedTabIndex="0" CanMinimize="false" IsQuickAccessToolBarVisible="False" Visibility="Collapsed">
+    <fluent:Ribbon Grid.Row="0" SelectedTabIndex="0" CanMinimize="false" IsQuickAccessToolBarVisible="False" Visibility="Visible">
       <fluent:Ribbon.Menu>
         <Menu Background="{StaticResource SystemControlForegroundAccentBrush}">
           <MenuItem Header="File"
                     Foreground="{StaticResource SystemControlForegroundAltHighBrush}">
-            <MenuItem Header="Open" InputGestureText="Ctrl+O">
+            <MenuItem Header="Open" InputGestureText="Ctrl+O" Click="Open_Click">
               <MenuItem.Icon>
                 <modernwpf:FontIcon Glyph="&#xE8E5;"/>
               </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Save" InputGestureText="Ctrl+S">
+            <MenuItem Header="Save" InputGestureText="Ctrl+S" Click="Save_Click">
               <MenuItem.Icon>
                 <modernwpf:FontIcon Glyph="&#xE74E;"/>
               </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Save As" InputGestureText="Ctrl+Shift+S">
+            <MenuItem Header="Save As" InputGestureText="Ctrl+Shift+S" Click="SaveAs_Click">
               <MenuItem.Icon>
                 <modernwpf:FontIcon Glyph="&#xE792;"/>
               </MenuItem.Icon>
@@ -41,7 +41,7 @@
               </MenuItem.Icon>
             </MenuItem>
             <Separator/>
-            <MenuItem Header="Exit" InputGestureText="Alt+F4">
+            <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Exit_Click">
               <MenuItem.Icon>
                 <modernwpf:FontIcon Glyph="&#xE7E8;"/>
               </MenuItem.Icon>
@@ -51,13 +51,13 @@
       </fluent:Ribbon.Menu>
       <fluent:RibbonTabItem Header="Edit">
         <fluent:RibbonGroupBox Header="Edit">
-          <fluent:Button SizeDefinition="Large" Header="Save">
+          <fluent:Button SizeDefinition="Large" Header="Save" Click="Save_Click">
             <fluent:Button.Icon>
               <modernwpf:FontIcon Glyph="&#xE74E;"/>
             </fluent:Button.Icon>
           </fluent:Button>
           <Separator/>
-          <fluent:Button SizeDefinition="Large" Header="Reload">
+          <fluent:Button SizeDefinition="Large" Header="Reload" Click="Reload_Click">
             <fluent:Button.Icon>
               <modernwpf:FontIcon Glyph="&#xE72C;"/>
             </fluent:Button.Icon>
