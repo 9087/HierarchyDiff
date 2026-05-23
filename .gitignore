@@ -9,3 +9,4 @@
 /HierarchyDiff.FileFormat.Xml/bin
 /HierarchyDiff.FileFormat.Xml/obj
 /HierarchyDiff/Properties/launchSettings.json
+*.csproj.user
