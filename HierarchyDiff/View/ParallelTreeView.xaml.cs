@@ -101,5 +101,37 @@ namespace HierarchyDiff.View
         {
             Tree.ScrollToVerticalOffset(offset);
         }
+
+        private void CopyFullPath_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu)
+            {
+                var filePath = (contextMenu.PlacementTarget as FrameworkElement)?.DataContext is ParallelTreeViewModel viewModel
+                    ? viewModel.FilePath
+                    : null;
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    Clipboard.SetText(filePath);
+                }
+            }
+        }
+
+        private void OpenContainingFolder_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu)
+            {
+                var filePath = (contextMenu.PlacementTarget as FrameworkElement)?.DataContext is ParallelTreeViewModel viewModel
+                    ? viewModel.FilePath
+                    : null;
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    var directory = System.IO.Path.GetDirectoryName(filePath);
+                    if (!string.IsNullOrEmpty(directory))
+                    {
+                        System.Diagnostics.Process.Start("explorer.exe", directory);
+                    }
+                }
+            }
+        }
     }
 }
