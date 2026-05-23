@@ -1,5 +1,6 @@
 ﻿using Diskordia.UndoRedo;
 using System.Diagnostics;
+using System.IO;
 
 namespace HierarchyDiff.Core
 {

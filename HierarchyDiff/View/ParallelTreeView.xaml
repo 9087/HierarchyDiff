@@ -28,6 +28,7 @@
       <SolidColorBrush x:Key="TreeViewItemBackgroundSelectedPointerOver" Color="Transparent"/>
       <SolidColorBrush x:Key="TreeViewItemBackgroundSelectedPressed" Color="Transparent"/>
       <SolidColorBrush x:Key="TreeViewItemBackgroundSelectedDisabled" Color="Transparent"/>
+      <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
       <sys:Double x:Key="GutterWidth">22</sys:Double>
       <GridLength x:Key="GutterGridLength">20</GridLength>
       
@@ -37,7 +38,11 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="{Binding ElementName=Header1, Path=ActualWidth}"/>
           </Grid.ColumnDefinitions>
-          <TextBlock Grid.Column="0" TextTrimming="CharacterEllipsis" FontSize="{Binding FontSize}" Text="{Binding Name}" VerticalAlignment="Center" FontFamily="{Binding FontFamily}"/>
+          <StackPanel Grid.Column="0" Orientation="Horizontal">
+            <modernwpf:FontIcon Glyph="{Binding IconGlyph}" FontSize="10" VerticalAlignment="Center" Margin="0,0,4,0"
+                                Visibility="{Binding HasIconGlyph, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TextBlock TextTrimming="CharacterEllipsis" FontSize="{Binding FontSize}" Text="{Binding Name}" VerticalAlignment="Center" FontFamily="{Binding FontFamily}" FontWeight="{Binding FontWeight}"/>
+          </StackPanel>
           <Border Grid.Column="1" Margin="10,0,6,0" HorizontalAlignment="Left" x:Name="Value">
             <Grid>
               <TextBlock x:Name="ValueTextBlock"

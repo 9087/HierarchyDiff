@@ -3,6 +3,7 @@ using HierarchyDiff.Core;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -299,6 +300,12 @@ namespace HierarchyDiff.ViewModel
         public FontFamily FontFamily => new FontFamily(Style.FontFamily ?? "Consolas");
 
         public double FontSize => Style.FontSize ?? 12;
+
+        public FontWeight FontWeight => Style.FontWeight ?? FontWeights.Normal;
+
+        public string? IconGlyph => Style.IconGlyph;
+
+        public bool HasIconGlyph => !IsNull && !string.IsNullOrEmpty(Style.IconGlyph);
 
         public double LineHeight => Style.LineHeight ?? 16;
 

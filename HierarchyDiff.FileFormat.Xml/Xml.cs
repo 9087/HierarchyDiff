@@ -1,6 +1,8 @@
 ﻿using HierarchyDiff.Core;
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Windows;
 using System.Xml;
 
 namespace HierarchyDiff.FileFormat.Xml
@@ -135,6 +137,11 @@ namespace HierarchyDiff.FileFormat.Xml
         public override TreeNodeStyle GetStyle(object? node, TreeNodeStyle? style)
         {
             style ??= new();
+            if (node is not XmlAttribute)
+            {
+                style.FontWeight = FontWeights.ExtraBold;
+                style.IconGlyph = "\xE915";
+            }
             return style;
         }
     }
